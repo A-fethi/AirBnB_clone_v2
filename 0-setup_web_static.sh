@@ -13,5 +13,5 @@ printf %s "server {
 		alias /data/web_static/current/;
 		index index.html;
 	}
-}" > etc/nginx/sites-enabled/default
+}" > /etc/nginx/sites-enabled/default
 sudo service nginx restart
