@@ -3,7 +3,7 @@ from fabric.api import *
 import os.path
 
 
-env.hosts = ["54.160.99.253", "100.25.14.73"]
+env.hosts = ['35.153.57.81', '52.3.249.210']
 
 
 def do_deploy(archive_path):
@@ -14,17 +14,18 @@ def do_deploy(archive_path):
         file_path = os.path.basename(archive_path)
         name = os.path.splitext(file_path)[0]
         put(archive_path, "/tmp/")
-        run("rm -rf /data/web_static/releases/{}".format(name))
-        run("mkdir -p /data/web_static/releases/{}/".format(name))
-        run("tar -xzf /tmp/{} -C /data/web_static/releases/{}"
+        run("sudo rm -rf /data/web_static/releases/{}".format(name))
+        run("sudo mkdir -p /data/web_static/releases/{}/".format(name))
+        run("sudo tar -xzf /tmp/{} -C /data/web_static/releases/{}"
             .format(file_path, name))
-        run("rm /tmp/{}".format(file_path))
-        run("mv /data/web_static/releases/{0}/web_static/* \
+        run("sudo rm /tmp/{}".format(file_path))
+        run("sudo mv /data/web_static/releases/{0}/web_static/* \
             /data/web_static/releases/{0}/".format(name))
-        run("rm -rf /data/web_static/releases/{}/web_static"
+        run("sudo rm -rf /data/web_static/releases/{}/web_static"
             .format(name))
-        run("rm -rf /data/web_static/current")
-        run("ln -sf /data/web_static/releases/{}/ /data/web_static/current"
+        run("sudo rm -rf /data/web_static/current")
+        run("sudo ln -sf /data/web_static/releases/{}/ \
+            /data/web_static/current"
             .format(name))
         print("New version deployed!")
         return True
