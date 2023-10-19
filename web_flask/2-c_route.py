@@ -2,6 +2,7 @@
 """Starts a Flask web application."""
 from flask import Flask
 
+
 app = Flask(__name__)
 
 
@@ -15,6 +16,13 @@ def hello_HBNB():
 def HBNB():
     """Returns HBNB"""
     return "HBNB"
+
+
+@app.route("/c/<username>", strict_slashes=False)
+def new_route(username):
+    """Returns HBNB"""
+    new_username = username.replace("_", " ")
+    return f"C {new_username}"
 
 
 if __name__ == "__main__":
