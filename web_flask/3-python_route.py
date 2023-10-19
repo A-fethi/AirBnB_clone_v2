@@ -19,11 +19,25 @@ def HBNB():
 
 
 @app.route("/c/<text>", strict_slashes=False)
-def new_route(text):
+def c_route(text):
     """Displays "C ", followed by the value of the text variable
     underscore _ symbols replaced with a space"""
     new_text = text.replace("_", " ")
     return f"C {new_text}"
+
+
+@app.route("/python/", strict_slashes=False)
+def python_default(text="is cool"):
+    """Displays the default value of text"""
+    return f"Python {text}"
+
+
+@app.route("/python/<text>", strict_slashes=False)
+def python_route(text="is cool"):
+    """Displays "Python ", followed by the value of the text variable
+    underscore _ symbols replaced with a space"""
+    new_text = text.replace("_", " ")
+    return f"Python {new_text}"
 
 
 if __name__ == "__main__":
