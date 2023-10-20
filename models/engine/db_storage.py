@@ -2,7 +2,6 @@
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
-from models.base_model import Base
 from models.amenity import Amenity
 from models.base_model import Base
 from models.city import City
@@ -17,6 +16,15 @@ class DBStorage:
     """DBStorage class"""
     __engine = None
     __session = None
+
+    classes = {
+        'Amenity': Amenity,
+        'City': City,
+        'Place': Place,
+        'Review': Review,
+        'State': State,
+        'User': User
+    }
 
     def __init__(self):
         """Creates the engine"""
@@ -36,11 +44,11 @@ class DBStorage:
         objects = {}
         if cls:
             if isinstance(cls, str):
-                cls = classes[cls]
+                cls = self.classes.get(cls)
             query_result = self.__session.query(cls)
         else:
             query_result = []
-            for cls in classes.values():
+            for cls in self.classes.values():
                 query_result_extend(self.__session.query(cls))
         for obj in query_result:
             key = f"{obj.__class__.__name__}.{obj.id}"
