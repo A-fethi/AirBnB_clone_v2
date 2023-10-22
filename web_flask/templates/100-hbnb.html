@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<HTML lang="en">
+	<HEAD>
+		<title>AirBnB Clone</title>
+		<LINK rel="stylesheet" href="styles/3-header.css">
+		<LINK rel="stylesheet" href="styles/3-footer.css">
+		<LINK rel="stylesheet" href="styles/4-common.css">
+		<LINK rel="stylesheet" href="styles/6-filters.css">
+        <LINK rel="stylesheet" href="styles/8-places.css"/>
+        <LINK rel="icon" href="images/logo.png">
+	</HEAD>
+	<BODY>
+		<HEADER>
+			<DIV class="logo"></DIV>
+		</HEADER>
+		<DIV class="container">
+			<SECTION class="filters">
+				<BUTTON>search</BUTTON>
+				<DIV class="locations">
+					<H3>States</H3>
+					<H4>&nbsp;</H4>
+					<UL class="popover">
+                                                {% for state in states.values()|sort(attribute="name") %}
+						<LI><H2>{{ state.name }}</H2>
+                                                        <UL>
+                                                                {% for city in state.cities|sort(attribute="name") %}
+                                                                <LI>{{ city.name }}</LI>
+                                                                {% endfor %}
+                                                        </UL>
+                                                </LI>
+                                                {% endfor %}
+					</UL>
+				</DIV>
+				<DIV class="filter_amenities">
+					<H3>Amenities</H3>
+					<H4>&nbsp;</H4>
+					<UL class="popover">
+                                                {% for amenity in amenities.values()|sort(attribute="name") %}
+                                                <LI>{{ amenity.name }}</LI>
+                                                {% endfor %}
+					</UL>
+				</DIV>
+			</SECTION>
+            <SECTION class="places">
+                <H1>Places</H1>
+                {% for place in places.values()|sort(attribute="name") %}
+                <ARTICLE>
+                        <DIV class="headline">
+                                <H2>{{ place.name }}</H2>
+                                <DIV class="price_by_night">${{ place.price_by_night }}</DIV>
+                        </DIV>
+                        <DIV class="information">
+                                <DIV class="max_guest">
+                                        <DIV class="guest_icon"></DIV>
+                                        <BR>{{ place.max_guest }} Guests
+                                </DIV>
+                                <DIV class="number_rooms">
+                                        <DIV class="bed_icon"></DIV>
+                                        <BR>{{ place.number_rooms }} Rooms
+                                </DIV>
+                                <DIV class="number_bathrooms">
+                                        <DIV class="bath_icon"></DIV>
+                                        <BR>{{ place.number_bathrooms }} Bathrooms
+                                </DIV>
+                        </DIV>
+                        <DIV class="user"><B>Owner:</B> {{ place.user.first_name }} {{ place.user.last_name }}</DIV>
+                        <DIV class="description">{{ place.description|safe }}</DIV>
+                </ARTICLE>
+                <ARTICLE>
+                    <DIV class="headline">
+                            <H2>{{ place.name }}</H2>
+                            <DIV class="price_by_night">${{ place.price_by_night }}</DIV>
+                    </DIV>
+                    <DIV class="information">
+                            <DIV class="max_guest">
+                                    <DIV class="guest_icon"></DIV>
+                                    <BR>{{ place.max_guest }} Guests
+                            </DIV>
+                            <DIV class="number_rooms">
+                                    <DIV class="bed_icon"></DIV>
+                                    <BR>{{ place.number_rooms }} Rooms
+                            </DIV>
+                            <DIV class="number_bathrooms">
+                                    <DIV class="bath_icon"></DIV>
+                                    <BR>{{ place.number_bathrooms }} Bathrooms
+                            </DIV>
+                    </DIV>
+                    <DIV class="user"><B>Owner:</B> {{ place.user.first_name }} {{ place.user.last_name }}</DIV>
+                    <DIV class="description">{{ place.description|safe }}</DIV>
+                    </ARTICLE>
+                    <ARTICLE>
+                        <DIV class="headline">
+                                <H2>{{ place.name }}</H2>
+                                <DIV class="price_by_night">${{ place.price_by_night }}</DIV>
+                        </DIV>
+                        <DIV class="information">
+                                <DIV class="max_guest">
+                                        <DIV class="guest_icon"></DIV>
+                                        <BR>{{ place.max_guest }} Guests
+                                </DIV>
+                                <DIV class="number_rooms">
+                                        <DIV class="bed_icon"></DIV>
+                                        <BR>{{ place.number_rooms }} Rooms
+                                </DIV>
+                                <DIV class="number_bathrooms">
+                                        <DIV class="bath_icon"></DIV>
+                                        <BR>{{ place.number_bathrooms }} Bathrooms
+                                </DIV>
+                        </DIV>
+                        <DIV class="user"><B>Owner:</B> {{ place.user.first_name }} {{ place.user.last_name }}</DIV>
+                        <DIV class="description">{{ place.description|safe }}</DIV>
+                    </ARTICLE>
+            </SECTION>
+		</DIV>
+		<FOOTER>Best School</FOOTER>
+	</BODY>
+</HTML>
